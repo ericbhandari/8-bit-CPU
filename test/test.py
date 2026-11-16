@@ -9,8 +9,6 @@ async def store(dut, ndx, data):
     dut.uio_in.value = 0x80 | (ndx & 0x1F)
     dut.ui_in.value = data
     await ClockCycles(dut.clk, 1)
-    dut.uio_in.value = 0
-    await ClockCycles(dut.clk, 1)
 
 
 @cocotb.test()
