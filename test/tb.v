@@ -45,9 +45,11 @@ module tb ();
       .clk    (clk),      // clock
       .rst_n  (rst_n)     // not reset
   );
+
+ `ifdef GL_TEST 
   
   wire [7:0] mem_out [0:31];
-`ifdef GL_TEST
+
   genvar i;
   generate
     for (i = 0; i < 32; i = i + 1)begin: mem_array
