@@ -26,6 +26,7 @@ async def store_fibonacci(dut):
     dut.uio_in.value = 0
     dut.rst_n.value = 0
     await ClockCycles(dut.clk, 10)
+    dut.rst_n.value = 1
  
     #Fibonacci sequence written in python with the assembly translations
     await store(dut, 0,  0b10100001)   # LDI 1
@@ -52,7 +53,9 @@ async def store_fibonacci(dut):
     await store(dut, 21, 0b10011111)   # STA 31
     await store(dut, 22, 0b11110110)   # JMP 22
 
-    dut.rst_n.value = 1
+    dut.uio_in.value = 0
+    dut.ui_in.value = 0
+    
     await ClockCycles(dut.clk, 30)
 
     #Unit tests
