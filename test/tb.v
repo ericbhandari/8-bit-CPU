@@ -46,8 +46,8 @@ module tb ();
       .rst_n  (rst_n)     // not reset
   );
 
- `ifdef GL_TEST 
-  
+ `ifndef GL_TEST 
+
   wire [7:0] mem_out [0:31];
 
   genvar i;

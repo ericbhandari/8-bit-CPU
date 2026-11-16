@@ -59,4 +59,4 @@ async def store_fibonacci(dut):
     await ClockCycles(dut.clk, 30)
 
     #Test case
-    assert int(dut.dut.mem[31].value) == 21
+    assert int(dut.uo_out.value) == 21
