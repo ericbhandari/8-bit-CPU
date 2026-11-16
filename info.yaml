@@ -25,7 +25,7 @@ pinout:
   # Inputs
   ui[0]: "DATA0"
   ui[1]: "DATA1"
-  ui[2]: "DATA2'
+  ui[2]: "DATA2"
   ui[3]: "DATA3"
   ui[4]: "DATA4"
   ui[5]: "DATA5"
