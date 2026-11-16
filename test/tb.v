@@ -47,12 +47,12 @@ module tb ();
   );
   
   wire [7:0] mem_out [0:31];
-
+`ifdef GL_TEST
   genvar i;
   generate
     for (i = 0; i < 32; i = i + 1)begin: mem_array
       assign mem_out[i] = dut.mem[i];
     end
   endgenerate
-
+`endif
 endmodule
