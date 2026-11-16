@@ -28,7 +28,7 @@ module tb ();
 `endif
 
   // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+  tt_um_ericbhandari_8bitCPU dut (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
@@ -45,5 +45,14 @@ module tb ();
       .clk    (clk),      // clock
       .rst_n  (rst_n)     // not reset
   );
+  
+  wire [7:0] mem_out [0:31];
+
+  genvar i;
+  generate
+    for (i = 0; i < 32; i = i + 1)begin: mem_array
+      assign mem_out[i] = dut.mem[i];
+    end
+  endgenerate
 
 endmodule
