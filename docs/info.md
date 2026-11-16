@@ -12,6 +12,8 @@ You can also include images in this folder and reference them in the markdown. E
 This is a simple 8 bit cpu with 8 instructions and 32 8-bit registers that store both operations and values.
 It uses a 3 bit opcode to determine the operation, and 5 bit value to either point to one of the 32 memory locations or pass into as a value for the operation.
 
+The operation set is ADD ,SUB , NOR, LDA, STA, LDI, BEQ, and JMP, and there are 32 registers, each containing one byte, which are indexed by the 5 data bits for the memory location index in the ADD, SUB, NOR, LDA, and STA operations. LDI uses the 5 data bits as a value to input into the accumulator. JMP and BEQ are there for loop control. 
+
 ## How to test
 
 To load, use the load pin as described in info.yaml to upload programs to the memory location ADDR[4:0], uploading DATA[7:0] whenever the clock in on.

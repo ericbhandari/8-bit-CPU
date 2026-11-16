@@ -1,6 +1,9 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
+# 8bit CPU
+This project is an 8-bit CPU with a 3 bit opcode for a total of 3 operations, and the other 5 bits are allocated for data. The operation set is ADD ,SUB , NOR, LDA, STA, LDI, BEQ, and JMP, and there are 32 registers, each containing one byte, which are indexed by the 5 data bits for the memory location index in the ADD, SUB, NOR, LDA, and STA operations. LDI uses the 5 data bits as a value to input into the accumulator. JMP and BEQ are there for loop control.
+
+To do a basic test, I set up a program in test.py that generates numbers in the Fibonacci sequence starting from just two registers, each holding 8'b0000001 and using the LDA, ADD, and STA operations each time to collect, generate, and store the following value in the sequence, which is also highlighted in my info.md
 
 - [Read the documentation for project](docs/info.md)
 
