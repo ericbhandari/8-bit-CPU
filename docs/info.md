@@ -18,3 +18,8 @@ To load, use the load pin as described in info.yaml to upload programs to the me
 
 To run the loaded program, set reset to high and load to 0, and the CPU will run one instruction per clock cycle.
 
+### Example program: Fibonacci
+
+This is a simple example program that calculates sequential numbers in a fibonacci sequence. Lines 32-35 upload two 1's as the seed numbers for the sequence. Then, the nth memory location is filled by first taking the n-2 memory location's value and placing it in the accumulator, and adding it to the value of mem[n-1]. Every time the ADD operation completes, the value is sent to the accumulator, and at that clock, it is the value reflected in the 8 output pins. 
+
+![Fibonacci example program](fibonacci_program.png)
