@@ -44,4 +44,44 @@ jobs:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: Setup python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      # adds docs/info.md at <site>/docs/.
+      # GDS viewer action still opens the 3D viewer as before.
+      - name: Build docs page
+        run: |
+          pip install markdown
+          mkdir -p gh-pages/docs
+          find docs -maxdepth 1 -type f ! -name '*.md' -exec cp {} gh-pages/docs/ \;
+          python - <<'PY'
+          import markdown, pathlib
+          md = pathlib.Path("docs/info.md").read_text(encoding="utf-8")
+          body = markdown.markdown(md, extensions=["tables", "fenced_code", "toc"])
+          html = f"""<!DOCTYPE html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>8-bit CPU</title>
+          <style>
+          body {{ font-family: system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }}
+          img {{ max-width: 100%; height: auto; }}
+          </style>
+          </head>
+          <body>
+          <h1>8-bit CPU</h1>
+          <p><a href="../">Open the 3D layout viewer</a></p>
+          {body}
+          </body>
+          </html>
+          """
+          pathlib.Path("gh-pages/docs/index.html").write_text(html, encoding="utf-8")
+          PY
+
       - uses: TinyTapeout/tt-gds-action/viewer@ttgf26c
